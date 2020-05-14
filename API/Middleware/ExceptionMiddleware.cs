@@ -35,7 +35,7 @@ namespace API.Middleware
 
         var response = _env.IsDevelopment()
             ? new ApiException((int)HttpStatusCode.InternalServerError, ex.Message, ex.StackTrace.ToString())
-            : new ApiException((int)HttpStatusCode.InternalServerError);
+            : new ApiException((int)HttpStatusCode.InternalServerError, ex.Message, ex.StackTrace.ToString()); // This is done to get more information when deploying to linux server for the first time. The stacktrace and message should be removed afterwards
 
         var options = new JsonSerializerOptions { PropertyNamingPolicy = JsonNamingPolicy.CamelCase };
 
